@@ -1,30 +1,13 @@
-
 <head>
-	<Body>This page has been made blank</Body>
-	<!-- for optimal display on high DPI devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<body>
+Temporary landing page. Please select a Location:
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
+
+<ul>
+  <li><a href="https://gearomatic.github.io/panoramas/NY/Truman's_Beach.html">Truman's Beach, Long Island New York</a></li>
+  <li><a href="https://gearomatic.github.io/panoramas/NJ/Rockefeller_Lookout.html">Rockefeller Lookout, New Jersey</a></li>
+  <li><a href="https://gearomatic.github.io/panoramas/NJ/Alpine_Lookout.html">Alpine Lookout, New Jersey</a></li>
+
+</ul>
+</body>
 </head>
-
-<!-- the viewer container must have a defined size -->
-<div id="viewer" style="width: 100vw; height: 100vh;"></div>
-
-<script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
-            "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
-        }
-    }
-</script>
-
-<script type="module">
-    import { Viewer } from '@photo-sphere-viewer/core';
-
-    const viewer = new Viewer({
-        container: document.querySelector('#viewer'),
-        panorama: '0.jpg',
-	sphereCorrection: { pan:0, tilt:0, roll: -0.025 }
-    });
-</script>
