@@ -1,4 +1,3 @@
-
 <head>
     <!-- for optimal display on high DPI devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,34 +64,82 @@ html, body, #viewer {
         "imports": {
             "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
             "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
-            "@photo-sphere-viewer/gyroscope-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gyroscope-plugin/index.module.js"
+            "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.module.js",
+			"@photo-sphere-viewer/gyroscope-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gyroscope-plugin/index.module.js"
         }
     }
 </script>
 
 <script type="module">
     import { Viewer } from '@photo-sphere-viewer/core';
+    import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
     import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
     const viewer = new Viewer({
 
         plugins: [
 		GyroscopePlugin,
-        ],
-		container: document.querySelector('#viewer'),
-        panorama: 'Truman_Beach.jpg',
-		caption: '<b> Trumans Beach, Long Island, New York</b>',
+        [MarkersPlugin, {
+		"defaultHoverScale": true,
+            markers: [
+                {
+    "id": "test",
+    "image": 'eye.png',
+    "position": {
+      "yaw": -0.2,
+      "pitch": -0.5
+    },
+    "size": {
+      "width": 32,
+      "height": 32
+    },
+    "anchor": "bottom center",
+    "tooltip": {
+      "content": document.querySelector('#tooltip-content').innerText,
+	  "className": 'custom-tooltip',
+      "position": "top left",
+      "trigger": "click"
+    }
+},
+            ],
+        }],
+    ],
+        container: document.querySelector('#viewer'),
+        panorama: 'Truman.jpg',
+		caption: 'Trumans Beach, Long Island, New York',
 		description: document.querySelector('#description').innerHTML,
-			sphereCorrection: { pan:0, tilt:0, roll: 0 },
+			sphereCorrection: { pan:0, tilt:0, roll: -0.028 },
 		navbar: [
 		'zoom', 
-		'move',  
+		'move', 
+		'markers', 
 		'caption',
 		'description',
 		'gyroscope'
 		],
     });
+	const markersPlugin = viewer.getPlugin(MarkersPlugin);
+	viewer.addEventListener('ready', () => {
+    viewer
+        .animate({
+            yaw: -0.1,
+            pitch: -0.15,
+            speed: 2500,
+        })
+        .then(() => {
+            markersPlugin.showMarkerTooltip('test');
+        });
+}, { once: true });
+
 	</script>
 
 <script type="text/template" id="description">
-    <p>This Photo Sphere was taken at Trumans Beach, on Friday July 12th from 7:45PM Est to 7:59PM Est.</p>
+    <p>his Photo Sphere was taken at Trumans Beach, on Friday July 12th from 7:45PM Est to 7:59PM Est.</p>
 </script>
+
+<script type="text/template" id="test">
+        <article>
+		<h2>TEST</h2>
+		<p>Just a test</p>
+    </article>
+</script>	
+
