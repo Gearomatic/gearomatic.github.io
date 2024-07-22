@@ -72,15 +72,16 @@ html, body, #viewer {
 
 <script type="module">
     import { Viewer } from '@photo-sphere-viewer/core';
-   import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
+    import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
     const viewer = new Viewer({
 
         plugins: [
 		GyroscopePlugin,
         ],
+	],
         container: document.querySelector('#viewer'),
         panorama: 'Truman_Beach.jpg',
-		caption: '<b> Trumans Beach, Long Island, New York',
+		caption: '<b> Trumans Beach, Long Island, New York</b>',
 		description: document.querySelector('#description').innerHTML,
 			sphereCorrection: { pan:0, tilt:0, roll: 0 },
 		navbar: [
@@ -94,5 +95,5 @@ html, body, #viewer {
 	</script>
 
 <script type="text/template" id="description">
-    <p>This Photo Sphere was taken at Trumans Beach, on Friday July 12th from 7:45PM Est to 7:59PM Est.</a></p>
+    <p>This Photo Sphere was taken at Trumans Beach, on Friday July 12th from 7:45PM Est to 7:59PM Est.</p>
 </script>
