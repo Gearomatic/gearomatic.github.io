@@ -1,1 +1,104 @@
 
+<head>
+    <!-- for optimal display on high DPI devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
+	<style>
+a:link {
+  color: lightblue;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: darkgray;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+html, body, #viewer {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+	.custom-tooltip {
+    max-width: none;
+    width: 300px;
+    box-shadow: 0 0 0 3px white;
+}
+
+.custom-tooltip .psv-tooltip-content {
+    padding: 0;
+}
+
+.custom-tooltip img {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+.custom-tooltip h2,
+.custom-tooltip p {
+    margin: 1rem;
+    text-align: justify;
+}
+</style>
+</head>
+
+<!-- the viewer container must have a defined size -->
+<div id="viewer" style="width=device-width"></div>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+            "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
+            "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.module.js",
+			"@photo-sphere-viewer/gyroscope-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gyroscope-plugin/index.module.js"
+        }
+    }
+</script>
+
+<script type="module">
+    import { Viewer } from '@photo-sphere-viewer/core';
+    import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+    import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
+    const viewer = new Viewer({
+
+        plugins: [
+		GyroscopePlugin,
+        [MarkersPlugin, {
+		"defaultHoverScale": true,
+            markers: [
+                {
+},
+            ],
+        }],
+    ],
+        container: document.querySelector('#viewer'),
+        panorama: 'Truman's_Beach.jpg',
+		caption: '<b> Truman's Beach, Long Island, New York',
+		description: document.querySelector('#description').innerHTML,
+			sphereCorrection: { pan:0, tilt:0, roll: 0 },
+		navbar: [
+		'zoom', 
+		'move', 
+		'markers', 
+		'caption',
+		'description',
+		'gyroscope'
+		],
+    });
+	</script>
