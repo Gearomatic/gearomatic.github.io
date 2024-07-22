@@ -65,28 +65,19 @@ html, body, #viewer {
         "imports": {
             "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
             "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
-            "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin/index.module.js",
-			"@photo-sphere-viewer/gyroscope-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gyroscope-plugin/index.module.js"
+            "@photo-sphere-viewer/gyroscope-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gyroscope-plugin/index.module.js"
         }
     }
 </script>
 
 <script type="module">
     import { Viewer } from '@photo-sphere-viewer/core';
-    import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
-    import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
+   import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
     const viewer = new Viewer({
 
         plugins: [
 		GyroscopePlugin,
-        [MarkersPlugin, {
-		"defaultHoverScale": true,
-            markers: [
-                {
-},
-            ],
-        }],
-    ],
+        ],
         container: document.querySelector('#viewer'),
         panorama: 'Truman_Beach.jpg',
 		caption: '<b> Truman&#39;s Beach, Long Island, New York',
@@ -94,8 +85,7 @@ html, body, #viewer {
 			sphereCorrection: { pan:0, tilt:0, roll: 0 },
 		navbar: [
 		'zoom', 
-		'move', 
-		'markers', 
+		'move',  
 		'caption',
 		'description',
 		'gyroscope'
